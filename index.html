@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardin Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ivory: #f9f6f0;
+      --dark: #1c1a16;
+      --gold: #b89a5a;
+      --sage: #8a9c7e;
+      --muted: #7a7568;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      background: var(--ivory);
+      color: var(--dark);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(138,156,126,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(184,154,90,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .frame {
+      position: fixed;
+      inset: 24px;
+      border: 1px solid rgba(184,154,90,0.25);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .corner {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      z-index: 2;
+    }
+    .corner::before, .corner::after {
+      content: '';
+      position: absolute;
+      background: var(--gold);
+    }
+    .corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+    .corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+    .corner.tl { top: 24px; left: 24px; }
+    .corner.tr { top: 24px; right: 24px; transform: scaleX(-1); }
+    .corner.bl { bottom: 24px; left: 24px; transform: scaleY(-1); }
+    .corner.br { bottom: 24px; right: 24px; transform: scale(-1); }
+
+    .content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 40px;
+      animation: rise 2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .overline {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 28px;
+      animation: rise 2s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .botanical {
+      width: 220px;
+      margin-bottom: 32px;
+      opacity: 0.55;
+      animation: rise 2s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .brand {
+      animation: rise 2s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px 0;
+      width: 320px;
+      max-width: 80vw;
+      animation: rise 2s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .rule::before, .rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+    }
+    .rule::before { background: linear-gradient(to right, transparent, var(--gold)); }
+    .rule::after  { background: linear-gradient(to left, transparent, var(--gold)); }
+
+    .rule-diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .under-construction {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.7rem;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: rise 2s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .tagline {
+      margin-top: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--sage);
+      letter-spacing: 0.05em;
+      animation: rise 2s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="content">
+
+    <p class="overline">Est. 2026</p>
+
+    <svg class="botanical" viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#8a9c7e" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M110 105 Q110 70 110 20" stroke-width="1"/>
+      <path d="M110 80 Q88 68 72 72" stroke-width="0.8"/>
+      <path d="M110 65 Q90 50 74 42" stroke-width="0.8"/>
+      <path d="M110 50 Q92 35 80 20" stroke-width="0.8"/>
+      <path d="M110 80 Q132 68 148 72" stroke-width="0.8"/>
+      <path d="M110 65 Q130 50 146 42" stroke-width="0.8"/>
+      <path d="M110 50 Q128 35 140 20" stroke-width="0.8"/>
+      <path d="M72 72 Q58 58 66 46 Q76 60 72 72Z" stroke-width="0.7" fill="rgba(138,156,126,0.12)"/>
+      <path d="M74 42 Q56 32 60 18 Q74 28 74 42Z" stroke-width="0.7" fill="rgba(138,156,126,0.12)"/>
+      <path d="M80 20 Q68 6 76 -2 Q86 10 80 20Z" stroke-width="0.7" fill="rgba(138,156,126,0.12)"/>
+      <path d="M148 72 Q162 58 154 46 Q144 60 148 72Z" stroke-width="0.7" fill="rgba(138,156,126,0.12)"/>
+      <path d="M146 42 Q164 32 160 18 Q146 28 146 42Z" stroke-width="0.7" fill="rgba(138,156,126,0.12)"/>
+      <path d="M140 20 Q152 6 144 -2 Q134 10 140 20Z" stroke-width="0.7" fill="rgba(138,156,126,0.12)"/>
+      <ellipse cx="110" cy="16" rx="5" ry="8" stroke-width="0.8" fill="rgba(138,156,126,0.15)"/>
+      <path d="M110 35 Q100 30 98 22 Q108 26 110 35Z" stroke-width="0.6" fill="rgba(138,156,126,0.1)"/>
+      <path d="M110 35 Q120 30 122 22 Q112 26 110 35Z" stroke-width="0.6" fill="rgba(138,156,126,0.1)"/>
+    </svg>
+
+    <div class="brand">
+      <h1>Jardin <em>Cafe</em></h1>
+    </div>
+
+    <div class="rule"><div class="rule-diamond"></div></div>
+
+    <p class="under-construction">Under Construction</p>
+    <p class="tagline">Something beautiful is taking root</p>
+
+  </div>
+
+</body>
+</html>
